@@ -15,8 +15,16 @@ namespace TEST.Data
         {
         }
 
+        public DbSet<COMPANYADDRESS> COMPANYADDRESS { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<COMPANYADDRESS>(entity =>
+            {
+                entity.ToTable("COMPANYADDRESS", "NAII");
+                entity.HasKey(e => new { e.COMPANYID, e.MAINADDRESSESID });
+            });
+
             base.OnModelCreating(builder);
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
